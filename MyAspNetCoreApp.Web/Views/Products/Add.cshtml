@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Add";
+}
+@model Product
+
+<h1>Ürün Ekleme</h1>
+<form asp-controller="Products" asp-action="Add" method="post">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" asp-for="Name">Ürün İsmi</label>
+        </div>
+        <input required class="form-control" asp-for="Name">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" asp-for="Price">Ürün Fiyatı</label>
+        </div>
+        <input required class="form-control" asp-for="Price">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" asp-for="Stock">Ürün Stoğu</label>
+        </div>
+        <input required class="form-control" asp-for="Stock">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" asp-for="Color">Ürün Rengi</label>
+        </div>
+        <input class="form-control" asp-for="Color">
+    </div>
+    <div class="form-check form-switch mb-3">
+        <input class="form-check-input" asp-for="IsPublish">
+        <label class="form-check-label" asp-for="IsPublish">Yayınlanacak</label>
+    </div>
+
+    <span class="form-label">Yayın Süresi</span>
+    @foreach (var item in ViewBag.Expire as Dictionary<string, int>)
+    {
+        <div class="form-check form-check-inline mb-3">
+            <input class="form-check-input" type="radio" id="Expire @item.Key" asp-for="Expire" value="@item.Value">
+            <label class="form-check-label" for="Expire @item.Key">@item.Key</label>
+        </div>
+    }
+    <br />
+    <button type="submit" class="btn btn-success">Ürün Kaydet</button>
+</form>

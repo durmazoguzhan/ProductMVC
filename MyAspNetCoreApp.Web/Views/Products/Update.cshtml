@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+}
+
+@model Product
+
+<h1>Ürün Güncelleme</h1>
+<form asp-controller="Products" asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id"/>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Ürün İsmi</span>
+        </div>
+        <input required class="form-control" asp-for="Name">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Ürün Fiyatı</span>
+        </div>
+        <input required class="form-control" asp-for="Price">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Ürün Stoğu</span>
+        </div>
+        <input required class="form-control" asp-for="Stock">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Ürün Rengi</span>
+        </div>
+        <input class="form-control" asp-for="Color">
+    </div>
+    <div class="form-check form-switch mb-3">
+        <input class="form-check-input" asp-for="IsPublish">
+        <label class="form-check-label" for="IsPublish">Yayınlanacak</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Ürün Güncelle</button>
+</form>

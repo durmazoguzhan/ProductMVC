@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<Product>
+
+@if (TempData["status"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["status"]
+    </div>
+}
+
+<h1>Ürünler</h1>
+<a asp-controller="products" asp-action="add" class="btn btn-primary">Ürün Ekle</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>İsim</th>
+            <th>Fiyat</th>
+            <th>Stok</th>
+            <th>Renk</th>
+            <th>Yayında</th>
+            <th>Yayın Süresi</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Stock</td>
+                <td>@product.Color</td>
+                <td>@(product.IsPublish ? "Evet" : "Hayır")</td>
+                <td>@product.Expire Ay</td>
+                <td>
+                    <a asp-controller="products" asp-action="remove" asp-route-id="@product.Id" class="btn btn-danger">Sil</a>
+                    <a asp-controller="products" asp-action="update" asp-route-id="@product.Id" class="btn btn-warning">Güncelle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
