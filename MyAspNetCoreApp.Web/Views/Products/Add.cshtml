@@ -23,6 +23,10 @@
         </div>
         <input required class="form-control" asp-for="Stock">
     </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Bir ürün açıklaması giriniz" asp-for="Description" style="height: 100px"></textarea>
+        <label asp-for="Description">Ürün Açıklaması</label>
+    </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" asp-for="Color">Ürün Rengi</label>
