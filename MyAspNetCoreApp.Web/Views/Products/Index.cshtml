@@ -19,10 +19,11 @@
             <th>İsim</th>
             <th>Fiyat</th>
             <th>Stok</th>
-            <th>Açıklama</th>
             <th>Renk</th>
+            <th>Açıklama</th>
             <th>Yayında</th>
             <th>Yayın Süresi</th>
+            <th>Yayınlanma Tarihi</th>
             <th>İşlem</th>
         </tr>
     </thead>
@@ -34,10 +35,21 @@
                 <td>@product.Name</td>
                 <td>@product.Price</td>
                 <td>@product.Stock</td>
-                <td>@product.Description</td>
                 <td>@product.Color</td>
+                @{
+                    if (product.Description != null && product.Description.Length > 30)
+                    {
+                        <td>@product.Description.Substring(0,30)</td>
+                    }
+                    else
+                    {
+                        <td>@product.Description</td>
+                    }
+                }
+
                 <td>@(product.IsPublish ? "Evet" : "Hayır")</td>
                 <td>@product.Expire Ay</td>
+                <td>@product.PublishDate</td>
                 <td>
                     <a asp-controller="products" asp-action="remove" asp-route-id="@product.Id" class="btn btn-danger">Sil</a>
                     <a asp-controller="products" asp-action="update" asp-route-id="@product.Id" class="btn btn-warning">Güncelle</a>

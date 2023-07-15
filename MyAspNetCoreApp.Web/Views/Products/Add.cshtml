@@ -27,17 +27,19 @@
         <textarea class="form-control" placeholder="Bir ürün açıklaması giriniz" asp-for="Description" style="height: 100px"></textarea>
         <label asp-for="Description">Ürün Açıklaması</label>
     </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" asp-for="Color">Ürün Rengi</label>
-        </div>
-        <input class="form-control" asp-for="Color">
-    </div>
+    <select class="form-select mb-3" asp-for="Color" asp-items="@ViewBag.ColorSelect">
+        <option value="">Renk seçiniz</option>
+    </select>
     <div class="form-check form-switch mb-3">
         <input class="form-check-input" asp-for="IsPublish">
         <label class="form-check-label" asp-for="IsPublish">Yayınlanacak</label>
     </div>
-
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" asp-for="PublishDate">Ürün Yayınlanma Tarihi</label>
+        </div>
+        <input required class="form-control" asp-for="PublishDate">
+    </div>
     <span class="form-label">Yayın Süresi</span>
     @foreach (var item in ViewBag.Expire as Dictionary<string, int>)
     {
@@ -47,5 +49,5 @@
         </div>
     }
     <br />
-    <button type="submit" class="btn btn-success">Ürün Kaydet</button>
+    <button type="submit" class="btn btn-primary">Ürün Kaydet</button>
 </form>

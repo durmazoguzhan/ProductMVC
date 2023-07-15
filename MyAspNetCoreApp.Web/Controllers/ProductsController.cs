@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyAspNetCoreApp.Web.Models;
 
 namespace MyAspNetCoreApp.Web.Controllers
@@ -37,6 +38,18 @@ namespace MyAspNetCoreApp.Web.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>{
+                new(){ Data="Beyaz", Value="Beyaz" },
+                new(){ Data="Siyah", Value="Siyah" },
+                new(){ Data="Mavi", Value="Mavi" },
+                new(){ Data="Kırmızı", Value="Kırmızı" },
+                new(){ Data="Yeşil", Value="Yeşil" },
+                new(){ Data="Sarı", Value="Sarı" },
+                new(){ Data="Mor", Value="Mor" },
+                new(){ Data="Kahverengi", Value="Kahverengi" },
+                new(){ Data="Turuncu", Value="Turuncu" },
+            }, "Value", "Data");
+
             ViewBag.Expire = new Dictionary<string, int>()
             {
                 { "1 Ay", 1 },
@@ -60,6 +73,27 @@ namespace MyAspNetCoreApp.Web.Controllers
         public IActionResult Update(int id)
         {
             var product = _context.Products.Find(id);
+
+            ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>{
+                new(){ Data="Beyaz", Value="Beyaz" },
+                new(){ Data="Siyah", Value="Siyah" },
+                new(){ Data="Mavi", Value="Mavi" },
+                new(){ Data="Kırmızı", Value="Kırmızı" },
+                new(){ Data="Yeşil", Value="Yeşil" },
+                new(){ Data="Sarı", Value="Sarı" },
+                new(){ Data="Mor", Value="Mor" },
+                new(){ Data="Kahverengi", Value="Kahverengi" },
+                new(){ Data="Turuncu", Value="Turuncu" },
+            }, "Value", "Data", product.Color);
+
+            ViewBag.Expire = new Dictionary<string, int>()
+            {
+                { "1 Ay", 1 },
+                { "3 Ay", 3 },
+                { "6 Ay", 6 },
+                { "12 Ay", 12 }
+            };
+
             return View(product);
         }
 

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Update";
 }
 
@@ -7,35 +6,49 @@
 
 <h1>Ürün Güncelleme</h1>
 <form asp-controller="Products" asp-action="Update" method="post">
-    <input type="hidden" asp-for="Id"/>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text">Ürün İsmi</span>
+            <label class="input-group-text" asp-for="Name">Ürün İsmi</label>
         </div>
         <input required class="form-control" asp-for="Name">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text">Ürün Fiyatı</span>
+            <label class="input-group-text" asp-for="Price">Ürün Fiyatı</label>
         </div>
         <input required class="form-control" asp-for="Price">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text">Ürün Stoğu</span>
+            <label class="input-group-text" asp-for="Stock">Ürün Stoğu</label>
         </div>
         <input required class="form-control" asp-for="Stock">
     </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Ürün Rengi</span>
-        </div>
-        <input class="form-control" asp-for="Color">
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Bir ürün açıklaması giriniz" asp-for="Description" style="height: 100px"></textarea>
+        <label asp-for="Description">Ürün Açıklaması</label>
     </div>
+    <select class="form-select mb-3" asp-for="Color" asp-items="@ViewBag.ColorSelect">
+        <option value="">Renk seçiniz</option>
+    </select>
     <div class="form-check form-switch mb-3">
         <input class="form-check-input" asp-for="IsPublish">
-        <label class="form-check-label" for="IsPublish">Yayınlanacak</label>
+        <label class="form-check-label" asp-for="IsPublish">Yayınlanacak</label>
     </div>
-
-    <button type="submit" class="btn btn-success">Ürün Güncelle</button>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" asp-for="PublishDate">Ürün Yayınlanma Tarihi</label>
+        </div>
+        <input required class="form-control" asp-for="PublishDate">
+    </div>
+    <span class="form-label">Yayın Süresi</span>
+    @foreach (var item in ViewBag.Expire as Dictionary<string, int>)
+    {
+        <div class="form-check form-check-inline mb-3">
+            <input class="form-check-input" type="radio" id="Expire @item.Key" asp-for="Expire" value="@item.Value">
+            <label class="form-check-label" for="Expire @item.Key">@item.Key</label>
+        </div>
+    }
+    <br />
+    <button type="submit" class="btn btn-primary">Ürün Güncelle</button>
 </form>
