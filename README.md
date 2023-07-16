@@ -2,6 +2,7 @@
 
 - .NET 6
 - Enitity Framework Core
+- Microsoft SQL Server
 - Dependency Injection
 - Viewmodel
 - AutoMapper
