@@ -3,6 +3,8 @@
 - .NET 6
 - Enitity Framework Core
 - Dependency Injection
+- Viewmodel
+- AutoMapper
 
 ![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/e22506de-4ceb-4cca-b27c-b923ded111df)
 ![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/7a230a8c-d097-4012-8736-fd5a8cee06f1)
