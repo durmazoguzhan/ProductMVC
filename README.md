@@ -3,6 +3,8 @@
 - .NET 6
 - Enitity Framework Core
 - Microsoft SQL Server
+- Code First
+- Migrations
 - Dependency Injection
 - Viewmodel
 - AutoMapper
