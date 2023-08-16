@@ -8,10 +8,12 @@ namespace MyAspNetCoreApp.Web.ViewModels
         public int Id { get; set; }
 
         [Required(ErrorMessage = "İsim alanı boş bırakılamaz.")]
+        [StringLength(50, ErrorMessage = "İsim alanı en fazla 50 karakter uzunluğunda olmalıdır.")]
         public string? Name { get; set; }
 
         [Required(ErrorMessage = "Fiyat alanı boş bırakılamaz.")]
         [Range(1, 50000, ErrorMessage = "Fiyat 1 ile 50.000,00₺ arasında olmalıdır.")]
+        [RegularExpression(@"(\\$|£)?[0-9]*€?", ErrorMessage = "Geçerli bir para formatı giriniz.")]
         public decimal? Price { get; set; }
 
         [Required(ErrorMessage = "Stok alanı boş bırakılamaz.")]
@@ -19,6 +21,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
         public int? Stock { get; set; }
 
         [Required(ErrorMessage = "Açıklama alanı boş bırakılamaz.")]
+        [StringLength(400, MinimumLength = 50, ErrorMessage = "Açıklama alanı 50 ile 400 karakter arası uzunlukta olmalıdır.")]
         public string? Description { get; set; }
 
         [Required(ErrorMessage = "Renk alanı boş bırakılamaz.")]
