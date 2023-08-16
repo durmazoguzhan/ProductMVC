@@ -11,9 +11,11 @@ namespace MyAspNetCoreApp.Web.ViewModels
         public string? Name { get; set; }
 
         [Required(ErrorMessage = "Fiyat alanı boş bırakılamaz.")]
+        [Range(1, 50000, ErrorMessage = "Fiyat 1 ile 50.000,00₺ arasında olmalıdır.")]
         public decimal? Price { get; set; }
 
         [Required(ErrorMessage = "Stok alanı boş bırakılamaz.")]
+        [Range(1, 500, ErrorMessage = "Stok 1 ile 500 arasında olmalıdır.")]
         public int? Stock { get; set; }
 
         [Required(ErrorMessage = "Açıklama alanı boş bırakılamaz.")]
