@@ -2,8 +2,13 @@
 
 - .NET 6
 - Enitity Framework Core
+- Microsoft SQL Server
+- Code First
+- Migrations
 - Dependency Injection
+- Viewmodel
+- AutoMapper
 
-![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/e22506de-4ceb-4cca-b27c-b923ded111df)
-![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/7a230a8c-d097-4012-8736-fd5a8cee06f1)
-![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/bb1ee728-3d71-4b6d-b567-5edb1152b9e9)
+![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/7f6606ac-8fbf-4c76-af40-5aa1fdce09ef)
+![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/52fb6f03-493d-4d3e-81c2-1f811dde91c7)
+![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/3353ab92-abe8-4d20-8337-9e5c6b244982)
