@@ -65,12 +65,38 @@ namespace MyAspNetCoreApp.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Product newProduct)
+        public IActionResult Add(ProductViewModel newProduct)
         {
-            _context.Products.Add(newProduct);
-            _context.SaveChanges();
-            TempData["status"] = "Ürün başarıyla eklendi.";
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _context.Products.Add(_mapper.Map<Product>(newProduct));
+                _context.SaveChanges();
+                TempData["status"] = "Ürün başarıyla eklendi.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>{
+                new(){ Data="Beyaz", Value="Beyaz" },
+                new(){ Data="Siyah", Value="Siyah" },
+                new(){ Data="Mavi", Value="Mavi" },
+                new(){ Data="Kırmızı", Value="Kırmızı" },
+                new(){ Data="Yeşil", Value="Yeşil" },
+                new(){ Data="Sarı", Value="Sarı" },
+                new(){ Data="Mor", Value="Mor" },
+                new(){ Data="Kahverengi", Value="Kahverengi" },
+                new(){ Data="Turuncu", Value="Turuncu" },
+            }, "Value", "Data");
+
+                ViewBag.Expire = new Dictionary<string, int>()
+            {
+                { "1 Ay", 1 },
+                { "3 Ay", 3 },
+                { "6 Ay", 6 },
+                { "12 Ay", 12 }
+            };
+                return View();
+            }
         }
 
         [HttpGet]
