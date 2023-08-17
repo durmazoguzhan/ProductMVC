@@ -67,22 +67,12 @@ namespace MyAspNetCoreApp.Web.Controllers
         [HttpPost]
         public IActionResult Add(ProductViewModel newProduct)
         {
-            if (ModelState.IsValid)
+            if (!String.IsNullOrEmpty(newProduct.Name) && (newProduct.Name.StartsWith("Ğ") || newProduct.Name.StartsWith("ğ")))
             {
-                _context.Products.Add(_mapper.Map<Product>(newProduct));
-                _context.SaveChanges();
-                TempData["status"] = "Ürün başarıyla eklendi.";
-                return RedirectToAction("Index");
+                ModelState.AddModelError(String.Empty, "Ürün adı Ğ harfi ile başlayamaz.");
             }
-            else
-            {
-                if (!String.IsNullOrEmpty(newProduct.Name) && (newProduct.Name.StartsWith("Ğ") || newProduct.Name.StartsWith("ğ")))
-                {
-                    //ModelState.AddModelError(String.Empty, "Ürün adı Ğ harfi ile başlayamaz.");
-                    ModelState.AddModelError("Name", "Ürün adı Ğ harfi ile başlayamaz.");
-                }
 
-                ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>{
+            ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>{
                 new(){ Data="Beyaz", Value="Beyaz" },
                 new(){ Data="Siyah", Value="Siyah" },
                 new(){ Data="Mavi", Value="Mavi" },
@@ -94,15 +84,32 @@ namespace MyAspNetCoreApp.Web.Controllers
                 new(){ Data="Turuncu", Value="Turuncu" },
             }, "Value", "Data");
 
-                ViewBag.Expire = new Dictionary<string, int>()
+            ViewBag.Expire = new Dictionary<string, int>()
             {
                 { "1 Ay", 1 },
                 { "3 Ay", 3 },
                 { "6 Ay", 6 },
                 { "12 Ay", 12 }
             };
-                return View();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Products.Add(_mapper.Map<Product>(newProduct));
+                    _context.SaveChanges();
+                    TempData["status"] = "Ürün başarıyla eklendi.";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception error)
+                {
+                    ModelState.AddModelError(String.Empty, $"Ürün kaydedilirken bir hata meydana geldi. Hata Mesajı: {error.Message}");
+                    return View();
+                }
+
             }
+            else
+                return View();
         }
 
         [HttpGet]
