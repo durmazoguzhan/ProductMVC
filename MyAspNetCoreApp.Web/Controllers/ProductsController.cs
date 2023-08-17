@@ -137,16 +137,42 @@ namespace MyAspNetCoreApp.Web.Controllers
                 { "12 Ay", 12 }
             };
 
-            return View(product);
+            return View(_mapper.Map<ProductViewModel>(product));
         }
 
         [HttpPost]
-        public IActionResult Update(Product updateProduct)
+        public IActionResult Update(ProductViewModel updateProduct)
         {
-            _context.Products.Update(updateProduct);
-            _context.SaveChanges();
-            TempData["status"] = "Ürün başarıyla güncellendi";
-            return RedirectToAction("Index");
+            ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>{
+                new(){ Data="Beyaz", Value="Beyaz" },
+                new(){ Data="Siyah", Value="Siyah" },
+                new(){ Data="Mavi", Value="Mavi" },
+                new(){ Data="Kırmızı", Value="Kırmızı" },
+                new(){ Data="Yeşil", Value="Yeşil" },
+                new(){ Data="Sarı", Value="Sarı" },
+                new(){ Data="Mor", Value="Mor" },
+                new(){ Data="Kahverengi", Value="Kahverengi" },
+                new(){ Data="Turuncu", Value="Turuncu" },
+            }, "Value", "Data", updateProduct.Color);
+
+            ViewBag.Expire = new Dictionary<string, int>()
+            {
+                { "1 Ay", 1 },
+                { "3 Ay", 3 },
+                { "6 Ay", 6 },
+                { "12 Ay", 12 }
+            };
+
+            if (ModelState.IsValid)
+            {
+                _context.Products.Update(_mapper.Map<Product>(updateProduct));
+                _context.SaveChanges();
+                TempData["status"] = "Ürün başarıyla güncellendi";
+                return RedirectToAction("Index");
+            }
+            else
+                return View();
+
         }
 
         [AcceptVerbs("GET", "POST")]

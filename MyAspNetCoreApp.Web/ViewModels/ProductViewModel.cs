@@ -15,7 +15,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
 
         [Required(ErrorMessage = "Fiyat alanı boş bırakılamaz.")]
         [Range(1, 50000, ErrorMessage = "Fiyat 1 ile 50.000,00₺ arasında olmalıdır.")]
-        [RegularExpression(@"(\\$|£)?[0-9]*€?", ErrorMessage = "Geçerli bir para formatı giriniz.")]
+        [RegularExpression(@"^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*\.[0-9]{2}$", ErrorMessage = "Geçerli bir para formatı giriniz.")]
         public decimal? Price { get; set; }
 
         [Required(ErrorMessage = "Stok alanı boş bırakılamaz.")]

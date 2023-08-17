@@ -18,6 +18,7 @@
         </div>
         <span class="text-danger" asp-validation-for="Name"></span>
     </div>
+
     <div class="mb-3">
         <div class="input-group">
             <div class="input-group-prepend">
@@ -27,6 +28,7 @@
         </div>
         <span class="text-danger" asp-validation-for="Price"></span>
     </div>
+
     <div class="mb-3">
         <div class="input-group">
             <div class="input-group-prepend">
@@ -36,6 +38,7 @@
         </div>
         <span class="text-danger" asp-validation-for="Stock"></span>
     </div>
+
     <div class="mb-3">
         <div class="form-floating">
             <textarea class="form-control" placeholder="Bir ürün açıklaması giriniz" asp-for="Description" style="height: 100px"></textarea>
@@ -43,18 +46,21 @@
         </div>
         <span class="text-danger" asp-validation-for="Description"></span>
     </div>
+
     <div class="mb-3">
         <select class="form-select" asp-for="Color" asp-items="@ViewBag.ColorSelect">
             <option value="">Renk seçiniz</option>
         </select>
         <span class="text-danger" asp-validation-for="Color"></span>
     </div>
+
     <div class="mb-3">
         <div class="form-check form-switch">
             <label class="form-check-label" asp-for="IsPublish">Yayınlanacak</label>
             <input class="form-check-input" asp-for="IsPublish">
         </div>
     </div>
+
     <div class="mb-3">
         <div class="input-group">
             <div class="input-group-prepend">
@@ -64,6 +70,7 @@
         </div>
         <span class="text-danger" asp-validation-for="PublishDate"></span>
     </div>
+
     <div class="mb-3">
         <span class="form-label">Yayın Süresi</span>
         @foreach (var item in ViewBag.Expire as Dictionary<string, int>)
@@ -75,6 +82,7 @@
         }
         <span class="text-danger" asp-validation-for="Expire"></span>
     </div>
+
     <button type="submit" class="btn btn-primary">Ürün Kaydet</button>
 </form>
 
