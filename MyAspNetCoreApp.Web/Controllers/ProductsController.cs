@@ -148,5 +148,15 @@ namespace MyAspNetCoreApp.Web.Controllers
             TempData["status"] = "Ürün başarıyla güncellendi";
             return RedirectToAction("Index");
         }
+
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult HasProductName(string productName)
+        {
+            var anyProduct = _context.Products.Any(x => x.Name == productName);
+            if (anyProduct)
+                return Json("Kaydetmeye çalıştığınız ürün ismi veritabanında zaten bulunmaktadır.");
+            else
+                return Json(true);
+        }
     }
 }

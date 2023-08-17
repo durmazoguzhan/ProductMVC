@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyAspNetCoreApp.Web.ViewModels
 {
@@ -7,6 +8,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
 
         public int Id { get; set; }
 
+        [Remote(controller: "Products", action: "HasProductName")]
         [Required(ErrorMessage = "İsim alanı boş bırakılamaz.")]
         [StringLength(50, ErrorMessage = "İsim alanı en fazla 50 karakter uzunluğunda olmalıdır.")]
         public string? Name { get; set; }
