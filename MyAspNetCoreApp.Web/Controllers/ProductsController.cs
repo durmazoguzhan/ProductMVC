@@ -76,6 +76,12 @@ namespace MyAspNetCoreApp.Web.Controllers
             }
             else
             {
+                if (!String.IsNullOrEmpty(newProduct.Name) && (newProduct.Name.StartsWith("Ğ") || newProduct.Name.StartsWith("ğ")))
+                {
+                    //ModelState.AddModelError(String.Empty, "Ürün adı Ğ harfi ile başlayamaz.");
+                    ModelState.AddModelError("Name", "Ürün adı Ğ harfi ile başlayamaz.");
+                }
+
                 ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>{
                 new(){ Data="Beyaz", Value="Beyaz" },
                 new(){ Data="Siyah", Value="Siyah" },
