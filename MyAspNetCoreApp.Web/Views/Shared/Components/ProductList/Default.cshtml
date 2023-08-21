@@ -1,0 +1,21 @@
+﻿@model List<ProductListComponentViewModel>
+
+<table class="table table-secondary table-striped rounded overflow-hidden">
+    <thead>
+        <tr>
+            <th>İSİM</th>
+            <th>AÇIKLAMA</th>
+            <th>STOK</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Stock</td>
+            </tr>
+        }
+    </tbody>
+</table>

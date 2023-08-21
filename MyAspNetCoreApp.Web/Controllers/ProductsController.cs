@@ -39,6 +39,11 @@ namespace MyAspNetCoreApp.Web.Controllers
             return View();
         }
 
+        public IActionResult StockSummary()
+        {
+            return View();
+        }
+
         public IActionResult Remove(int id)
         {
             var product = _context.Products.Find(id);
