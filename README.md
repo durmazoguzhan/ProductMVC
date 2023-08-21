@@ -1,12 +1,13 @@
-# E-Commerce App Based Products for learning ASP.NET MVC
+# E-Commerce App Based Products for learning ASP.NET Core MVC
 
 - .NET 6
 - Enitity Framework Core
 - Microsoft SQL Server
 - Code First
 - Migrations
-- Dependency Injection
+- Dependency Injection `DI Container`
 - Viewmodel
+- View Component
 - AutoMapper
 
 ![image](https://github.com/durmazoguzhan/ProductMVC/assets/81313884/7f6606ac-8fbf-4c76-af40-5aa1fdce09ef)
