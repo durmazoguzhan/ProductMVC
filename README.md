@@ -1,4 +1,4 @@
-# E-Commerce App Based Products for learning ASP.NET MVC
+# E-Commerce App Based Products for learning ASP.NET Core MVC
 
 - .NET 6
 - Enitity Framework Core
