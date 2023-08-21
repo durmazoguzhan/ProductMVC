@@ -24,6 +24,21 @@ namespace MyAspNetCoreApp.Web.Controllers
             return View(_mapper.Map<List<ProductViewModel>>(products));
         }
 
+        public IActionResult ProductSummary()
+        {
+            var products = _context.Products.OrderByDescending(x => x.Id).Select(x => new ProductPartialViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Price = x.Price,
+                Stock = x.Stock
+            }).ToList();
+
+            ViewBag.productListPartialViewModel = new ProductListPartialViewModel { Products = products };
+
+            return View();
+        }
+
         public IActionResult Remove(int id)
         {
             var product = _context.Products.Find(id);

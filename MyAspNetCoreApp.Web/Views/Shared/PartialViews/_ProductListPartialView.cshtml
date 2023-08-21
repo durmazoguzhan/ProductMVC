@@ -1,0 +1,23 @@
+﻿@model ProductListPartialViewModel
+
+<table class="table table-dark table-striped rounded overflow-hidden">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>İSİM</th>
+            <th>FİYAT</th>
+            <th>STOK</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Stock</td>
+            </tr>
+        }
+    </tbody>
+</table>
