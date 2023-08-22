@@ -1,0 +1,44 @@
+﻿@model VisitorViewModel
+
+@if (TempData["result"] != null)
+{
+    <div class="alert alert-info d-flex justify-content-between" id="alert">
+        @TempData["result"]
+        <button class="btn btn-close" onclick="CloseAlert()"></button>
+    </div>
+}
+
+@if (ViewBag.Visitors != null)
+{
+    <div class="mb-3">
+        @foreach (var visitor in ViewBag.Visitors as List<VisitorViewModel>)
+        {
+            <div class="card mb-1">
+                <div class="card-body">
+                    <h5 class="card-title">@visitor.Name</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@visitor.Created</h6>
+                    <p class="card-text">@visitor.Comment</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+<form asp-controller="Visitor" asp-action="SaveVisitorComment" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="Name">İsim</label>
+        <input asp-for="Name" class="form-control" placeholder="Adınız ve soyadınızı giriniz...">
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Comment">Yorum</label>
+        <textarea asp-for="Comment" class="form-control" placeholder="Yorumunuzu giriniz..."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>
+
+<script>
+    function CloseAlert() {
+        document.getElementById("alert").remove();
+    }
+</script>
